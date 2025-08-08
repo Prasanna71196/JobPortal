@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Career Portal - Job Details</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="navbar sticky">
+    <div class="logo">Career<span>Hive</span></div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="jobs.html">Jobs</a></li>
+      <li><a href="auth.html">Login/Register</a></li>
+    </ul>
+  </nav>
+
+  <main style="max-width:700px; margin: 2rem auto; padding: 1rem;">
+    <article id="jobDetails">
+      <!-- Job details will be dynamically injected -->
+      <h2>Loading job details...</h2>
+    </article>
+
+    <section style="margin-top: 40px;">
+      <h3>Apply for this job</h3>
+      <form id="applyForm" onsubmit="return validateApplyForm(event)">
+        <label for="applicantName">Name <span style="color:red">*</span></label><br/>
+        <input type="text" id="applicantName" name="applicantName" required/><br/><br/>
+
+        <label for="applicantEmail">Email <span style="color:red">*</span></label><br/>
+        <input type="email" id="applicantEmail" name="applicantEmail" required/><br/><br/>
+
+        <label for="resume">Upload Resume (pdf, doc, docx) max 2MB <span style="color:red">*</span></label><br/>
+        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" onchange="validateResume(this)" required/><br/><br/>
+
+        <button type="submit" class="apply-btn">Submit Application</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Simulate loading job data based on id in querystring
+    const jobsData = {
+  job1: {
+    title: "Front-End Developer",
+    company: "StackBit",
+    location: "Delhi",
+    description: `
+      <p>We are looking for a passionate Front-End Developer to join our team.</p>
+      <ul>
+        <li>Build user-friendly web applications.</li>
+        <li>Collaborate with designers and backend developers.</li>
+        <li>Strong knowledge of HTML, CSS, JavaScript.</li>
+      </ul>`
+  },
+  job2: {
+    title: "Marketing Specialist",
+    company: "MarketWise",
+    location: "Mumbai",
+    description: `
+      <p>Join our marketing team to create and implement strategies.</p>
+      <ul>
+        <li>Manage social media channels.</li>
+        <li>Conduct market research.</li>
+        <li>Coordinate campaigns and events.</li>
+      </ul>`
+  },
+  job3: {
+    title: "Financial Analyst",
+    company: "FinancePros",
+    location: "Bangalore",
+    description: `
+      <p>Seeking a Financial Analyst to evaluate financial data and trends.</p>
+      <ul>
+        <li>Analyze financial statements and reports.</li>
+        <li>Provide insights for budgeting and forecasting.</li>
+        <li>Support investment decisions and risk assessment.</li>
+      </ul>`
+  },
+  job4: {
+    title: "Accountant",
+    company: "MoneyMatters",
+    location: "Delhi",
+    description: `
+      <p>Looking for a skilled Accountant to manage company accounts.</p>
+      <ul>
+        <li>Maintain accurate financial records.</li>
+        <li>Prepare balance sheets and tax reports.</li>
+        <li>Ensure compliance with financial regulations.</li>
+      </ul>`
+  },
+  job5: {
+    title: "UX Designer",
+    company: "Creative Designs",
+    location: "Mumbai",
+    description: `
+      <p>Join our team as a UX Designer to create intuitive user experiences.</p>
+      <ul>
+        <li>Conduct user research and usability testing.</li>
+        <li>Design wireframes, prototypes, and user flows.</li>
+        <li>Collaborate with developers to implement designs.</li>
+      </ul>`
+  },
+  job6: {
+    title: "Graphic Designer",
+    company: "PixelPerfect",
+    location: "Remote",
+    description: `
+      <p>We need a Graphic Designer to create visual content for multiple platforms.</p>
+      <ul>
+        <li>Design marketing materials, logos, and layouts.</li>
+        <li>Work closely with marketing and product teams.</li>
+        <li>Maintain brand consistency across designs.</li>
+      </ul>`
+  }
+};
+
+    function getJobIdFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    function loadJobDetails() {
+      const jobId = getJobIdFromUrl();
+      const job = jobsData[jobId];
+      const container = document.getElementById('jobDetails');
+      if(job) {
+        container.innerHTML = `
+          <h2>${job.title}</h2>
+          <p><strong>Company:</strong> ${job.company}</p>
+          <p><strong>Location:</strong> ${job.location}</p>
+          <div>${job.description}</div>
+        `;
+      } else {
+        container.innerHTML = `<p>Job not found.</p>`;
+      }
+    }
+
+    function validateApplyForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('applicantName').value.trim();
+      const email = document.getElementById('applicantEmail').value.trim();
+      const resume = document.getElementById('resume');
+
+      if (!name || !email) {
+        alert('Name and Email are required.');
+        return false;
+      }
+
+      if (!validateResume(resume)) {
+        return false;
+      }
+
+      alert('Application submitted successfully!');
+      e.target.reset();
+      return true;
+    }
+
+    loadJobDetails();
+  </script>
+</body>
+</html>

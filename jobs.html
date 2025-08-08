@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Career Portal - Job Listings</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <nav class="navbar sticky">
+    <div class="logo">Career<span>Hive</span></div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="jobs.html" class="active">Jobs</a></li>
+      <li><a href="auth.html">Login/Register</a></li>
+    </ul>
+  </nav>
+
+  <section class="filters" style="max-width:900px; margin: 2rem auto; display:flex; gap:1rem; justify-content:center; flex-wrap: wrap;">
+    <select id="categoryFilter" onchange="filterJobs()">
+      <option value="">All Categories</option>
+      <option value="IT">IT & Software</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Finance">Finance</option>
+      <option value="Design">Design</option>
+    </select>
+
+    <select id="locationFilter" onchange="filterJobs()">
+      <option value="">All Locations</option>
+      <option value="Delhi">Delhi</option>
+      <option value="Mumbai">Mumbai</option>
+      <option value="Bangalore">Bangalore</option>
+      <option value="Remote">Remote</option>
+    </select>
+  </section>
+
+  <section class="job-list" style="max-width:900px; margin: 0 auto; padding-bottom: 3rem;">
+    <!-- Example job card -->
+    <!-- IT & Software -->
+<div class="job-card" data-category="IT" data-location="Delhi">
+  <h3>Front-End Developer</h3>
+  <p><strong>Company:</strong> StackBit</p>
+  <p><strong>Location:</strong> Delhi</p>
+  <button onclick="saveJob('job1')" class="save-btn">Save Job</button>
+  <a href="details.html?id=job1" class="details-link">View Details</a>
+</div>
+
+<!-- Marketing -->
+<div class="job-card" data-category="Marketing" data-location="Mumbai">
+  <h3>Marketing Specialist</h3>
+  <p><strong>Company:</strong> MarketWise</p>
+  <p><strong>Location:</strong> Mumbai</p>
+  <button onclick="saveJob('job2')" class="save-btn">Save Job</button>
+  <a href="details.html?id=job2" class="details-link">View Details</a>
+</div>
+
+<!-- Finance -->
+<div class="job-card" data-category="Finance" data-location="Bangalore">
+  <h3>Financial Analyst</h3>
+  <p><strong>Company:</strong> FinancePros</p>
+  <p><strong>Location:</strong> Bangalore</p>
+  <button onclick="saveJob('job3')" class="save-btn">Save Job</button>
+  <a href="details.html?id=job3" class="details-link">View Details</a>
+</div>
+
+<div class="job-card" data-category="Finance" data-location="Delhi">
+  <h3>Accountant</h3>
+  <p><strong>Company:</strong> MoneyMatters</p>
+  <p><strong>Location:</strong> Delhi</p>
+  <button onclick="saveJob('job4')" class="save-btn">Save Job</button>
+  <a href="details.html?id=job4" class="details-link">View Details</a>
+</div>
+
+<!-- Design -->
+<div class="job-card" data-category="Design" data-location="Mumbai">
+  <h3>UX Designer</h3>
+  <p><strong>Company:</strong> Creative Designs</p>
+  <p><strong>Location:</strong> Mumbai</p>
+  <button onclick="saveJob('job5')" class="save-btn">Save Job</button>
+  <a href="details.html?id=job5" class="details-link">View Details</a>
+</div>
+
+<div class="job-card" data-category="Design" data-location="Remote">
+  <h3>Graphic Designer</h3>
+  <p><strong>Company:</strong> PixelPerfect</p>
+  <p><strong>Location:</strong> Remote</p>
+  <button onclick="saveJob('job6')" class="save-btn">Save Job</button>
+  <a href="details.html?id=job6" class="details-link">View Details</a>
+</div>
+
+
+    <!-- Add more job cards here -->
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

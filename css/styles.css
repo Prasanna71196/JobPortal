@@ -1,0 +1,504 @@
+/* ===== Google Font Import ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* ===== CSS Variables ===== */
+:root {
+  --primary: #6751b9;
+  --secondary: #4ed2c8;
+  --bg-gradient: linear-gradient(135deg, #ecf0f3 70%, #d9ed92 100%);
+  --category-1: #7f7030;
+  --category-2: #37b295;
+  --category-3: #ff7477;
+  --category-4: #a28089;
+  --font-family: 'Poppins', Arial, sans-serif;
+  --shadow-light: rgba(70,70,90,0.10);
+  --shadow-medium: rgba(50,50,90,0.08);
+  --btn-bg: var(--secondary);
+  --btn-hover-bg: var(--primary);
+  --input-border: #ccc;
+  --input-focus-border: var(--primary);
+}
+
+/* ===== Global Reset & Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: 
+    linear-gradient(135deg, #b9c0a3 10%),
+    url('../images/bgimage.png') no-repeat center center / cover;
+  color: #2e2e2e;
+  min-height: 100vh;
+  line-height: 1.6;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('../images/bgimage.png') no-repeat center center / cover;
+  opacity: 0.1;
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+/* ===== Navbar ===== */
+.navbar {
+  background: #1e1919;
+  box-shadow: 0 2px 12px var(--shadow-medium);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  user-select: none;
+}
+
+.navbar .logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: white;
+  cursor: default;
+}
+
+.navbar .logo span {
+  color: var(--secondary);
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+.navbar li a:hover,
+.navbar li a.active {
+  color: var(--secondary);
+  border-bottom: 2px solid var(--secondary);
+  padding-bottom: 2px;
+}
+
+/* ===== Welcome Banner (Home page) ===== */
+.welcome-banner {
+  text-align: center;
+  padding: 70px 10px 40px;
+  color: #fff;
+  background: linear-gradient(120deg, var(--primary) 70%, var(--secondary) 100%);
+  animation: bannerFadeIn 2.5s ease forwards;
+  user-select: none;
+}
+
+.welcome-banner h1 {
+  font-size: 3rem;
+  margin: 0 0 0.3rem 0;
+}
+
+.welcome-banner h1 span {
+  font-weight: 700;
+  color: #ffc600;
+  text-shadow: 0 0 8px rgba(255, 198, 0, 0.8);
+}
+
+.welcome-banner p {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* ===== Categories Section (Home page) ===== */
+.categories {
+  max-width: 900px;
+  margin: 3rem auto;
+}
+
+.categories h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.category-item {
+  min-width: 170px;
+  padding: 1.5rem 1rem;
+  border-radius: 18px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  box-shadow: 0 2px 14px var(--shadow-light);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  color: #fff;
+  user-select: none;
+}
+
+/* Category Colors */
+.category-item:nth-child(1) { background: var(--category-1); }
+.category-item:nth-child(2) { background: var(--category-2); }
+.category-item:nth-child(3) { background: var(--category-3); }
+.category-item:nth-child(4) { background: var(--category-4); }
+
+/* Hover effect */
+.category-item:hover {
+  transform: scale(1.04) translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Fade in Animation */
+.fade-in {
+  animation: fadeInUp 0.75s ease forwards;
+  opacity: 0;
+}
+
+/* ===== Job Listings ===== */
+.job-list {
+  max-width: 900px;
+  margin: 1.5rem auto 3rem;
+  padding: 0 1rem;
+}
+
+.job-card {
+  background: #fff;
+  padding: 1.5rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 14px var(--shadow-light);
+  transition: box-shadow 0.3s, transform 0.3s;
+  cursor: default;
+  position: relative;
+}
+
+.job-card:hover {
+  box-shadow: 0 10px 30px rgba(70,70,90,0.15);
+  transform: translateY(-4px);
+}
+
+.job-card h3 {
+  margin: 0 0 0.4rem 0;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.4rem;
+}
+
+.job-card p {
+  margin: 4px 0;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #444;
+}
+
+.job-card strong {
+  color: var(--secondary);
+}
+
+/* Save Job Button */
+.save-btn {
+  background: var(--btn-bg);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.save-btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+/* Details Link */
+.details-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: red;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.details-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+/* ===== Filters Section (Jobs page) ===== */
+.filters {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  max-width: 900px;
+  margin: 2rem auto;
+  flex-wrap: wrap;
+}
+
+.filters select {
+  padding: 8px 14px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--input-border);
+  outline-offset: 2px;
+  transition: border-color 0.25s ease;
+  min-width: 190px;
+  cursor: pointer;
+}
+
+.filters select:focus {
+  border-color: var(--input-focus-border);
+  outline: none;
+}
+
+/* ===== Job Details Page ===== */
+main[style] {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+#jobDetails h2 {
+  color: var(--primary);
+  margin-top: 0;
+}
+
+#jobDetails p {
+  font-weight: 600;
+  margin: 0.3rem 0;
+  color: #333;
+}
+
+#jobDetails ul {
+  list-style: disc inside;
+  margin-top: 1rem;
+  color: #555;
+}
+
+/* ===== Application Form ===== */
+form#applyForm label {
+  font-weight: 600;
+  margin-top: 12px;
+  display: block;
+}
+
+form#applyForm input[type="text"],
+form#applyForm input[type="email"],
+form#applyForm input[type="file"] {
+  width: 100%;
+  padding: 9px 12px;
+  font-size: 1rem;
+  border: 1.5px solid var(--input-border);
+  border-radius: 8px;
+  margin-top: 6px;
+  transition: border-color 0.25s ease;
+  cursor: text;
+}
+
+form#applyForm input[type="text"]:focus,
+form#applyForm input[type="email"]:focus,
+form#applyForm input[type="file"]:focus {
+  border-color: var(--input-focus-border);
+  outline: none;
+}
+
+.apply-btn {
+  margin-top: 20px;
+  padding: 12px 0;
+  background: var(--btn-bg);
+  border: none;
+  width: 100%;
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.apply-btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+/* ===== Auth Page (Login/Register) ===== */
+main[style] {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 1.5rem 2rem;
+  max-width: 400px;
+  margin: 3rem auto 4rem;
+}
+
+.toggle-btn {
+  padding: 12px 30px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 5px 5px 0 0;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.toggle-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+form#loginForm,
+form#registerForm {
+  margin-top: 1rem;
+}
+
+form#loginForm label,
+form#registerForm label {
+  font-weight: 600;
+  margin-top: 14px;
+  display: block;
+}
+
+form#loginForm input[type="email"],
+form#loginForm input[type="password"],
+form#registerForm input[type="email"],
+form#registerForm input[type="password"],
+form#registerForm input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 1rem;
+  margin-top: 6px;
+  border: 1.5px solid var(--input-border);
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+  cursor: text;
+}
+
+form#loginForm input[type="email"]:focus,
+form#loginForm input[type="password"]:focus,
+form#registerForm input[type="email"]:focus,
+form#registerForm input[type="password"]:focus,
+form#registerForm input[type="text"]:focus {
+  border-color: var(--input-focus-border);
+  outline: none;
+}
+
+.auth-btn {
+  margin-top: 20px;
+  width: 100%;
+  background: var(--btn-bg);
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.auth-btn:hover {
+  background: var(--btn-hover-bg);
+}
+
+/* Form error state (optional usability) */
+input:invalid {
+  border-color: #e74c3c;
+}
+
+/* ===== Animations ===== */
+@keyframes bannerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 600px) {
+  /* Navbar */
+  .navbar ul {
+    gap: 1rem;
+  }
+
+  /* Categories */
+  .category-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .category-item {
+    min-width: unset;
+    width: 80%;
+  }
+
+  /* Filters */
+  .filters {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .filters select {
+    min-width: unset;
+    width: 100%;
+  }
+
+  /* Job Cards */
+  .job-list {
+    padding: 0 10px;
+  }
+
+  .job-card {
+    padding: 1rem 1rem;
+  }
+
+  /* Auth main container */
+  main[style] {
+    margin: 2rem 1rem 3rem;
+    padding: 1.5rem;
+  }
+}
